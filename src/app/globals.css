@@ -1,27 +1,100 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+    :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-start-rgb: 0, 0, 0;
+        --background-end-rgb: 0, 0, 0;
+    }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+    color: rgb(var(--foreground-rgb));
+
+    /* background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
+}
+
+@layer base {
+    html {
+        @apply scroll-smooth;
+    }
+}
+
+.text-lobster {
+    font-family: 'Lobster', cursive;
+}
+
+.NavBar {
+    font-size: 12px;
+    margin-left: 46px;
+}
+
+.NavBar::before {
+    content: '';
+    width: 30px;
+    height: 2px;
+    display: block;
+    font-size: 8px;
+    font-weight: 200;
+    background: #cbd5e0;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-right: 10px;
+}
+
+.activeNav {
+    color: white;
+    font-size: 16px !important;
+    margin-left: 86px;
+}
+
+.activeNav::before {
+    /* content: '';
+    display: block;
+    width: 120px;
+    height: 2px;
+    background: #000;
+    left: 0;
+    top: 50%;
+    position: absolute; */
+
+    content: '';
+    width: 70px;
+    height: 2px;
+    display: block;
+    font-size: 8px;
+    font-weight: 200;
+    background: white;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-right: 10px;
+    /* padding: 10px; */
+}
+
+/* a.activeNav::after {
+    content: '\f054';
+    font-size: 8px;
+    font-weight: 200;
+    padding: 10px;
+} */
+
+.NavBar:hover {
+    color: white;
 }
