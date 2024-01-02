@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export const InputGroup = ({
     label,
@@ -7,6 +7,13 @@ export const InputGroup = ({
     isTextArea = false,
     isFile = false,
 }) => {
+    const [selectedFiles, setSelectedFiles] = useState(null);
+
+    const handleFileChange = (event) => {
+        const files = event.target.files;
+        setSelectedFiles(files);
+    };
+
     return (
         <div className="flex flex-col w-full mb-6">
             <div>
@@ -21,16 +28,32 @@ export const InputGroup = ({
                 {isFile ? (
                     <>
                         <br />
-                        <span className="text-xs">
-                            *only accept this extension: png, jpg, jpeg, gif,
+                        <span className="text-xs text-teal-300">
+                            *only accept these extensions: png, jpg, jpeg, gif,
                             xlsx, xls, doc, docx, ppt, pptx, txt, pdf
                         </span>
-                        <input
-                            type="file"
-                            multiple
-                            accept="image/png, image/jpg, image/jpeg, image/gif, .xlsx, .xls, .doc, docx, .ppt, pptx, .txt, .pdf"
-                            className="mt-2 w-full rounded-md py-2.5 pl-2.5 pr-2 bg-transparent outline outline-2 outline-teal-400/30 focus:outline-teal-400/50 text-teal-300 placeholder:text-teal-400/50"
-                        />
+                        <div className="relative mt-4 w-full">
+                            <input
+                                type="file"
+                                id="fileInput"
+                                multiple
+                                onChange={handleFileChange}
+                                accept="image/png, image/jpg, image/jpeg, image/gif, .xlsx, .xls, .doc, docx, .ppt, pptx, .txt, .pdf"
+                                className="absolute opacity-0 w-full h-full cursor-pointer"
+                            />
+                            <label
+                                htmlFor="fileInput"
+                                className="relative w-full bg-teal-400/30 py-2.5 px-4 rounded-md cursor-pointer text-white font-medium hover:bg-teal-600"
+                            >
+                                {selectedFiles
+                                    ? `${selectedFiles.length} ${
+                                          selectedFiles.length > 1
+                                              ? 'files'
+                                              : 'file'
+                                      } selected`
+                                    : 'Choose File'}
+                            </label>
+                        </div>
                     </>
                 ) : isTextArea ? (
                     <textarea

@@ -69,7 +69,7 @@ export default function About() {
                                         <h2 className="font-bold text-3xl md:text-5xl mb-2">
                                             Karim Benzema
                                         </h2>
-                                        <span className="font-semibold text-base md:text-xl">
+                                        <span className="font-semibold text-base md:text-xl text-teal-500">
                                             Software Engineer
                                         </span>
                                     </div>
@@ -191,27 +191,85 @@ export default function About() {
                     <div className="md:py-20 z-20">
                         <div className="px-6" id="about">
                             <p className="text-dark-grey font-medium text-lg">
-                                Back in 2012, I decided to try my hand at
-                                creating custom Tumblr themes and tumbled head
-                                first into the rabbit hole of coding and web
-                                development. Fast-forward to today, and I’ve had
-                                the privilege of building software for an
-                                advertising agency, a start-up, a student-led
-                                design studio, and a huge corporation.
+                                Hello there! 👋 I'm{' '}
+                                <span className="text-teal-500">
+                                    Farhan Hilmi
+                                </span>
+                                , a passionate Software Engineer 🚀 with a knack
+                                for crafting robust and efficient solutions. My
+                                journey in the realm of software development has
+                                been shaped by diverse internship experiences
+                                and a solid educational foundation.
                                 <br />
                                 <br />
-                                My main focus these days is building products
-                                and leading projects for our clients at
-                                Upstatement. In my free time I've also released
-                                an online video course that covers everything
-                                you need to know to build a web app with the
-                                Spotify API.
+                                In my recent role as a{' '}
+                                <span className="text-teal-500">
+                                    Backend Engineer Trainee
+                                </span>{' '}
+                                at
+                                <span className="text-teal-500">
+                                    {' '}
+                                    PT Shopee International Indonesia - Sea Labs
+                                </span>
+                                , I completed a rigorous 4-month digital
+                                development program. Immersed in a diverse tech
+                                stack including Golang, PostgreSQL, Docker, and
+                                more, I contributed to a final group project
+                                addressing specific study cases. Earlier at
+                                <span className="text-teal-500">
+                                    {' '}
+                                    PT Telekomunikasi Indonesia Tbk
+                                </span>
+                                , I optimized testing procedures, developed
+                                backend services using Django Python, and
+                                significantly enhanced system functionality.
+                                Notably, at{' '}
+                                <span className="text-teal-500">
+                                    PT Bank Tabungan Pensiunan Nasional Tbk
+                                    (BTPN JENIUS)
+                                </span>
+                                , I crafted clean and efficient backend
+                                microservices using Node.js, MongoDB, and gRPC,
+                                creating comprehensive API documentation using
+                                Swagger. My journey also includes resolving bugs
+                                and optimizing backend performance at
+                                <span className="text-teal-500">
+                                    PT. Intermedia Multibahasa Indonesia
+                                    (LingoTalk)
+                                </span>{' '}
+                                using TypeScript, Node.js, and Express
+                                Framework. 💡
+                                <br />
+                                <br />I hold a Bachelor's degree in Computer
+                                Science from{' '}
+                                <span className="text-teal-500">
+                                    Telkom University
+                                </span>
+                                , graduating Cum Laude. During my academic
+                                journey, I specialized in Information Systems,
+                                and my thesis focused on applying Test-Driven
+                                Development in Backend Development for Sharia
+                                Peer-to-Peer (P2P) Lending Applications. This
+                                involved utilizing NodeJS, MongoDB, and Google
+                                Cloud App Engine for deploying the backend
+                                application. My coursework covered a spectrum of
+                                topics, from Data Structure and Algorithm
+                                (Python), Object Oriented Programming (Java) to
+                                Web Application Development using PHP Laravel.
+                                🎓
                                 <br />
                                 <br />
-                                When I’m not at the computer, I’m usually rock
-                                climbing, hanging out with my wife and two cats,
-                                or running around Hyrule searching for Korok
-                                seeds K o r o k s e e d s.
+                                My skill set spans a wide array of technologies
+                                including{' '}
+                                <span className="text-teal-500">
+                                    SQL, MongoDB, PHP, Go (Golang), gRPC, Gin
+                                    Framework, JavaScript, TypeScript, Python,
+                                    Django, NodeJs, ExpressJs, and PHP Laravel{' '}
+                                </span>
+                                . These skills, cultivated through hands-on
+                                experiences and coursework, reflect my ability
+                                to adapt to diverse challenges in the tech
+                                landscape.
                             </p>
                         </div>
 
@@ -343,7 +401,23 @@ export default function About() {
 
                             </p> */}
                             <div className="flex flex-col mb-6 rounded-lg p-10 transition-transform duration-300 shadow-md hover:backdrop-blur-xl hover:backdrop-filter hover:bg-opacity-20 bg-opacity-10 hover:translate-y-[-20px] bg-blue-ocean text-dark-grey text-lobster">
-                                <span>Email: farhanhilmi32@gmail.com</span>
+                                {/* Share your thoughts, and let's connect! */}
+                                {/* I'm eagerly waiting to hear from you. Drop me a message, and let's start a conversation. */}
+                                <p className="text-xl font-bold mb-4">
+                                    Get in Touch!
+                                </p>
+                                <div className="flex flex-col space-y-2">
+                                    <span>
+                                        📧 Email: farhanhilmi32@gmail.com
+                                    </span>
+                                    <span>📱 WhatsApp: +6289668872106</span>
+                                </div>
+                                <p className="text-gray-400 mb-8 mt-8">
+                                    Whether you have questions, ideas, or just
+                                    want to say hello, I'm here for you. Drop me
+                                    a message, and let's start a conversation.
+                                    Your thoughts matter!
+                                </p>
 
                                 <InputGroup
                                     label="Full name"
@@ -366,6 +440,7 @@ export default function About() {
                                     text={'Send message'}
                                     onHover={true}
                                     fontSize="text-lg"
+                                    margin="mt-6"
                                 />
                             </div>
                         </div>
