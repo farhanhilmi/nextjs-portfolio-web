@@ -166,22 +166,31 @@ export default function About() {
                             </div>
                             <div className="flex flex-col gap-2 text-lobster">
                                 <span className="hover:text-gray-400">
-                                    <a href="" target="_blank">
+                                    <a
+                                        href="https://www.github.com/farhanhilmi"
+                                        target="_blank"
+                                    >
                                         Github
                                     </a>
                                 </span>
                                 <span className="hover:text-gray-400">
-                                    <a href="" target="_blank">
-                                        Linkedin
+                                    <a
+                                        href="https://www.linkedin.com/in/farhan-hilmi/"
+                                        target="_blank"
+                                    >
+                                        LinkedIn
                                     </a>
                                 </span>
-                                <span className="hover:text-gray-400">
+                                {/* <span className="hover:text-gray-400">
                                     <a href="http://" target="_blank">
                                         Medium
                                     </a>
-                                </span>
+                                </span> */}
                                 <span className="hover:text-gray-400">
-                                    <a href="http://" target="_blank">
+                                    <a
+                                        href="https://drive.google.com/file/d/1YOM9W0bkVPVEeaz2EvzwI5_kn4xPpB6p/view?usp=drive_link"
+                                        target="_blank"
+                                    >
                                         Download Resume/CV
                                     </a>
                                 </span>
@@ -275,46 +284,85 @@ export default function About() {
 
                         <div className="mt-10" id="experience">
                             <Experience
-                                position={'Backend Developer'}
-                                company={'Telkom Indonesia'}
-                                description={
-                                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ex dolores laborum impedit, illo a eligendi deleniti praesentium sequi corporis provident neque officia sapiente! Obcaecati perspiciatis saepe fuga eum sit. Perferendis ad nostrum earum doloribus sunt iure, quod corporis, tempore alias quas sed vel nulla! Consectetur eligendi reiciendis rem tempora.'
+                                position={'Backend Engineer Trainee'}
+                                company={
+                                    'PT Shopee International Indonesia - Sea Labs'
                                 }
-                                duration={'August 2022 -- December 2022'}
-                                jobType={'Internship'}
-                                Stack={['Django', 'PostgresQL', 'Python']}
+                                description={
+                                    "<ul className='list-disc pl-4 mb-4'> <li> Participated in Shopee's digital development program, completing a comprehensive labs boot camp in batch 1. Engaged in a rigorous 4-month full-time training with a focus on back-end development. </li> <li> Acquired foundational knowledge in programming and adopted industry best practices in software development. Explored concepts such as object-oriented programming, design patterns, clean architecture, transactional databases, and REST API implementation during the program. </li> <li> Contributed to a final group project assigned by Shopee, addressing specific study cases and applying the skills acquired throughout the training. </li> <li> Utilized a diverse Tech Stack that includes Ubuntu Linux, Golang, Git, PostgreSQL, GORM, Gin Framework, Docker, and gRPC, showcasing proficiency in a range of tools and technologies essential for real-world industry applications. </li> </ul>"
+                                }
+                                duration={'August 2023 -- December 2023'}
+                                jobType={'Trainee'}
+                                Stack={[
+                                    'Go',
+                                    'Gin',
+                                    'PostgreSQL',
+                                    'gRPC',
+                                    'Clean Architectur',
+                                    'Docker',
+                                    'REST API',
+                                ]}
                             />
                             <Experience
-                                position={'Backend Developer'}
-                                company={'Telkom Indonesia'}
+                                position={'Backend Engineer Intern'}
+                                company={'PT Telekomunikasi Indonesia Tbk '}
                                 description={
-                                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ex dolores laborum impedit, illo a eligendi deleniti praesentium sequi corporis provident neque officia sapiente! Obcaecati perspiciatis saepe fuga eum sit. Perferendis ad nostrum earum doloribus sunt iure, quod corporis, tempore alias quas sed vel nulla! Consectetur eligendi reiciendis rem tempora.'
+                                    "<ul className='list-disc pl-4 mb-4'> <li> Optimised unit testing procedures by introducing a mock database, leading to enhanced testing efficiency and a substantial reduction in test execution time. </li><li> Developed backend services using Django Python and PostgreSQL, delivering multiple services that contributed significantly to enhancing the overall functionality and performance of the system. </li> </ul>"
                                 }
                                 duration={'August 2022 -- December 2022'}
                                 jobType={'Internship'}
-                                Stack={['Django', 'PostgresQL', 'Python']}
+                                Stack={[
+                                    'Python',
+                                    'Django',
+                                    'PostgreSQL',
+                                    'REST API',
+                                    'Unit Testing',
+                                ]}
                             />
                             <Experience
-                                position={'Backend Developer'}
-                                company={'Telkom Indonesia'}
-                                description={
-                                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ex dolores laborum impedit, illo a eligendi deleniti praesentium sequi corporis provident neque officia sapiente! Obcaecati perspiciatis saepe fuga eum sit. Perferendis ad nostrum earum doloribus sunt iure, quod corporis, tempore alias quas sed vel nulla! Consectetur eligendi reiciendis rem tempora.'
+                                position={'Backend Engineer Intern'}
+                                company={
+                                    'PT Bank Tabungan Pensiunan Nasional Tbk (BTPN JENIUS)'
                                 }
-                                duration={'August 2022 -- December 2022'}
+                                description={
+                                    "<ul className='list-disc pl-4 mb-4'> <li> Produced clean and efficient code based on project requirements, ensuring high-quality software deliverables. </li><li> Developed backend microservices using Node.js, MongoDB, and gRPC as a part of the learning process, resulting in a solid understanding of these technologies. </li><li> Generated comprehensive API documentation using Swagger for a given microservices project, facilitating ease of understanding and usage for developers and stakeholders </li> </ul>"
+                                }
+                                duration={'February 2022 -- August 2022'}
                                 jobType={'Internship'}
-                                Stack={['Django', 'PostgresQL', 'Python']}
+                                Stack={[
+                                    'JavaScript',
+                                    'NodeJs',
+                                    'ExpressJs',
+                                    'MongoDB',
+                                    'KafkaJs',
+                                    'Swagger',
+                                ]}
                             />
                             <Experience
-                                position={'Backend Developer'}
-                                company={'Telkom Indonesia'}
-                                description={
-                                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ex dolores laborum impedit, illo a eligendi deleniti praesentium sequi corporis provident neque officia sapiente! Obcaecati perspiciatis saepe fuga eum sit. Perferendis ad nostrum earum doloribus sunt iure, quod corporis, tempore alias quas sed vel nulla! Consectetur eligendi reiciendis rem tempora.'
+                                position={'Backend Engineer Intern'}
+                                company={
+                                    'PT. Intermedia Multibahasa Indonesia (LingoTalk)'
                                 }
-                                duration={'August 2022 -- December 2022'}
+                                description={
+                                    "<ul className='list-disc pl-4 mb-4'> <li> Resolved bugs and optimised backend performance for seamless system operation and implemented new features within given timelines for application enhancement. Collaborated with Front-End, Mobile, and Project Manager to achieve project goals. </li></li> Automated data population in the database, improving data management efficiency. </li><li> Proactively addressed QA-reported bugs, ensuring a high-quality, error-free application </li> </ul>"
+                                }
+                                duration={'February 2022 -- August 2022'}
                                 jobType={'Internship'}
-                                Stack={['Django', 'PostgresQL', 'Python']}
+                                Stack={[
+                                    'TypeScript',
+                                    'NodeJs',
+                                    'ExpressJs',
+                                    'NoSQL',
+                                ]}
                             />
-                            <LinkPage href={''} className="font-semibold px-6">
+
+                            <a
+                                href={
+                                    'https://drive.google.com/file/d/1YOM9W0bkVPVEeaz2EvzwI5_kn4xPpB6p/view?usp=drive_link'
+                                }
+                                className="font-semibold px-6"
+                                target="__blank"
+                            >
                                 <span className="hover:text-teal-300 hover:bg-teal-400/20 hover:rounded-full hover:px-3 hover:py-2 hover:pe-0">
                                     <span className="mr-2 text-teal-300">
                                         <ArrowForwardIosIcon
@@ -333,7 +381,7 @@ export default function About() {
                                         // onHover={true}
                                     />
                                 </span>
-                            </LinkPage>
+                            </a>
                         </div>
                         <div className="mt-28" id="projects">
                             <div className="text-center w-full mb-8 text-3xl font-bold">

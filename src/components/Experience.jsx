@@ -21,6 +21,8 @@ function Experience({
         setIsHovered(false);
     };
 
+    const createMarkup = (htmlString) => ({ __html: htmlString });
+
     return (
         <div
             className={`grid grid-cols-4 mb-6 rounded-lg p-6 transition-transform duration-300 ${
@@ -39,8 +41,11 @@ function Experience({
                 <p className="text-gray-500 mb-2">
                     {company} ~ <span className="mr-2">{jobType}</span>
                 </p>
-                <p className="text-sm font-medium text-gray-400 mb-4">
-                    {description}
+                <p
+                    className="text-sm font-medium text-gray-400 mb-4"
+                    dangerouslySetInnerHTML={createMarkup(description)}
+                >
+                    {/* {description} */}
                 </p>
                 {/* <div className="flex items-center text-xs text-gray-500">
                     <span className="mr-2">{duration}</span>
