@@ -11,6 +11,8 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Chips from './Chips';
 import { useRouter } from 'next/navigation';
 import Navbar from './Navbar';
+import { InputGroup } from './InputGroup';
+import Button from './Button';
 
 export default function About() {
     const [isDetail, setIsDetail] = useState(false);
@@ -58,13 +60,13 @@ export default function About() {
             {/* <LightEffect /> */}
             {/* <div className="bg-[linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,0.5))] fixed z-1 w-full h-full"></div> */}
             <div className="w-full px-4 lg:px-[280px] bg-[linear-gradient(to_bottom,rgba(0,0,0,1),rgba(0,0,0,0.1))]  lg:sticky lg:inset-0 min-h-screen">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 pb-28">
                     <div className="pt-20 px-6 md:px-0 relative md:sticky w-full min-h-screen lg:inset-0 h-screen">
                         <div className="flex md:px-6 lg:px-0 flex-col md:pb-48 min-h-screen md:justify-between">
                             <div>
                                 <div className="mb-20">
                                     <div className="mb-4 text-lobster">
-                                        <h2 className="font-bold  text-3xl md:text-5xl mb-2">
+                                        <h2 className="font-bold text-3xl md:text-5xl mb-2">
                                             Karim Benzema
                                         </h2>
                                         <span className="font-semibold text-base md:text-xl">
@@ -142,14 +144,47 @@ export default function About() {
                                                 PROJECTS
                                             </Link>
                                         </div>
+                                        <div className="relative">
+                                            <Link
+                                                onSetActive={() =>
+                                                    handleSection('contacts')
+                                                }
+                                                to="contacts"
+                                                spy={true}
+                                                smooth={true}
+                                                offset={-50}
+                                                duration={500}
+                                                // href="#about"
+                                                activeClass="activeNav"
+                                                className={` cursor-pointer NavBar`}
+                                            >
+                                                CONTACT ME
+                                            </Link>
+                                        </div>
                                     </ul>
                                 </div>
                             </div>
-                            <div>
-                                <span>Github</span>
-                                <span>Github</span>
-                                <span>Github</span>
-                                <span>Github</span>
+                            <div className="flex flex-col gap-2 text-lobster">
+                                <span className="hover:text-gray-400">
+                                    <a href="" target="_blank">
+                                        Github
+                                    </a>
+                                </span>
+                                <span className="hover:text-gray-400">
+                                    <a href="" target="_blank">
+                                        Linkedin
+                                    </a>
+                                </span>
+                                <span className="hover:text-gray-400">
+                                    <a href="http://" target="_blank">
+                                        Medium
+                                    </a>
+                                </span>
+                                <span className="hover:text-gray-400">
+                                    <a href="http://" target="_blank">
+                                        Download Resume/CV
+                                    </a>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -299,6 +334,40 @@ export default function About() {
                                     />
                                 </span>
                             </LinkPage>
+                        </div>
+                        <div className="px-6 pt-56" id="contacts">
+                            <div className="text-center w-full mb-12 text-3xl font-bold">
+                                Let's talk
+                            </div>
+                            {/* <p className="text-dark-grey font-medium text-lg">
+
+                            </p> */}
+                            <div className="flex flex-col mb-6 rounded-lg p-10 transition-transform duration-300 shadow-md hover:backdrop-blur-xl hover:backdrop-filter hover:bg-opacity-20 bg-opacity-10 hover:translate-y-[-20px] bg-blue-ocean text-dark-grey text-lobster">
+                                <span>Email: farhanhilmi32@gmail.com</span>
+
+                                <InputGroup
+                                    label="Full name"
+                                    placeholder="type your full name here..."
+                                    isRequired={true}
+                                />
+                                <InputGroup
+                                    label="E-mail address"
+                                    placeholder="type your email address here..."
+                                    isRequired={true}
+                                />
+                                <InputGroup
+                                    label="Message"
+                                    placeholder="type your message here..."
+                                    isRequired={true}
+                                    isTextArea={true}
+                                />
+                                <InputGroup label="Attachments" isFile={true} />
+                                <Button
+                                    text={'Send message'}
+                                    onHover={true}
+                                    fontSize="text-lg"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
