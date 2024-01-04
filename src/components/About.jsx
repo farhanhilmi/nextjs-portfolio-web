@@ -409,7 +409,7 @@ export default function About() {
                                     'PT. Intermedia Multibahasa Indonesia (LingoTalk)'
                                 }
                                 description={
-                                    "<ul className='list-disc pl-4 mb-4'> <li> Resolved bugs and optimised backend performance for seamless system operation and implemented new features within given timelines for application enhancement. Collaborated with Front-End, Mobile, and Project Manager to achieve project goals. </li></li> Automated data population in the database, improving data management efficiency. </li><li> Proactively addressed QA-reported bugs, ensuring a high-quality, error-free application </li> </ul>"
+                                    "<ul className='list-disc pl-4 mb-4'> <li> Resolved bugs and optimised backend performance for seamless system operation and implemented new features within given timelines for application enhancement. Collaborated with Front-End, Mobile, and Project Manager to achieve project goals. </li><li> Automated data population in the database, improving data management efficiency. </li><li> Proactively addressed QA-reported bugs, ensuring a high-quality, error-free application </li> </ul>"
                                 }
                                 duration={'February 2022 -- August 2022'}
                                 jobType={'Internship'}

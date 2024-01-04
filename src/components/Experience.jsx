@@ -41,12 +41,12 @@ function Experience({
                 <p className="text-gray-500 mb-2">
                     {company} ~ <span className="mr-2">{jobType}</span>
                 </p>
-                <p
+                <div
                     className="text-sm font-medium text-gray-400 mb-4"
                     dangerouslySetInnerHTML={createMarkup(description)}
                 >
                     {/* {description} */}
-                </p>
+                </div>
                 {/* <div className="flex items-center text-xs text-gray-500">
                     <span className="mr-2">{duration}</span>
                     
