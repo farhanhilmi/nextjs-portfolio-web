@@ -2,18 +2,15 @@ import React, { useState } from 'react';
 
 export const InputGroup = ({
     label,
+    name,
+    onChange = false,
     placeholder,
     isRequired = false,
     isTextArea = false,
     isFile = false,
+    selectedFiles = false,
+    value = '',
 }) => {
-    const [selectedFiles, setSelectedFiles] = useState(null);
-
-    const handleFileChange = (event) => {
-        const files = event.target.files;
-        setSelectedFiles(files);
-    };
-
     return (
         <div className="flex flex-col w-full mb-6">
             <div>
@@ -34,10 +31,11 @@ export const InputGroup = ({
                         </span>
                         <div className="relative mt-4 w-full">
                             <input
+                                name={name}
                                 type="file"
                                 id="fileInput"
                                 multiple
-                                onChange={handleFileChange}
+                                onChange={onChange}
                                 accept="image/png, image/jpg, image/jpeg, image/gif, .xlsx, .xls, .doc, docx, .ppt, pptx, .txt, .pdf"
                                 className="absolute opacity-0 w-full h-full cursor-pointer"
                             />
@@ -60,12 +58,18 @@ export const InputGroup = ({
                         className="mt-2 w-full rounded-md py-2.5 pl-2.5 pr-2 bg-transparent outline outline-2 outline-teal-400/30 focus:outline-teal-400/50 text-teal-300 placeholder:text-teal-400/50"
                         placeholder={placeholder}
                         rows={4}
+                        name={name}
+                        onChange={onChange}
+                        value={value}
                     ></textarea>
                 ) : (
                     <input
                         type="text"
                         className="mt-2 w-full rounded-md py-2.5 pl-2.5 pr-2 bg-transparent outline outline-2 outline-teal-400/30 focus:outline-teal-400/50 text-teal-300 placeholder:text-teal-400/50"
                         placeholder={placeholder}
+                        name={name}
+                        value={value}
+                        onChange={onChange}
                     />
                 )}
             </div>

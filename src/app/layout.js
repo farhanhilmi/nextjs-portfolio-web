@@ -4,6 +4,8 @@ import { useState } from 'react';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import Head from 'next/head';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -49,6 +51,7 @@ export default function RootLayout({ children }) {
                 <meta name="description" content={metadata.description} />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+
             <body
                 // className="bg-[#134E5E] "
                 className="bg-gradient-to-r from-[#3A6073] to-[#16222A] font-inter"
@@ -57,6 +60,8 @@ export default function RootLayout({ children }) {
                 // onMouseMove={handleMouseMove}
                 // className={inter.className}
             >
+                <ToastContainer />
+
                 {children}
             </body>
         </html>

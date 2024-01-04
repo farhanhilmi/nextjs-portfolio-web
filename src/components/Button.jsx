@@ -6,7 +6,8 @@ export default function Button({
     fontSize = 'text-xs',
     margin = '',
     onHover = false,
-    onClick = false,
+    onClick = undefined,
+    isOnsubmit = false,
 }) {
     return (
         <button
@@ -14,6 +15,7 @@ export default function Button({
                 onHover ? ' hover:text-white' : ''
             }}`}
             onClick={onClick}
+            {...(isOnsubmit ? { type: 'submit' } : {})}
         >
             {text}
         </button>

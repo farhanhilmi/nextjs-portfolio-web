@@ -4,36 +4,104 @@ import { Link } from 'react-scroll/modules';
 import LinkPage from 'next/link';
 import Experience from './Experience';
 import Projects from './Projects';
-import LightEffect from './LightEffect';
 import { useEffect, useState } from 'react';
 import DetailProject from './DetailProject';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Chips from './Chips';
-import { useRouter } from 'next/navigation';
 import Navbar from './Navbar';
 import { InputGroup } from './InputGroup';
 import Button from './Button';
+import { toast } from 'react-toastify';
+import { checkInputFields } from '@/utils/validation';
 
 export default function About() {
+    const [selectedFiles, setSelectedFiles] = useState(null);
+
     const [isDetail, setIsDetail] = useState(false);
     const [sectionContent, setSectionContent] = useState(false);
     const [projects, setProjects] = useState([]);
+    const [dataMessage, setDataMessage] = useState({
+        fullname: '',
+        email: '',
+        message: '',
+        attachments: null,
+    });
 
-    useEffect(() => {
-        {
-            (async () => {
-                const res = await fetch(
-                    'https://frhnh.free.beeceptor.com/projects',
-                );
-                const data = await res.json();
+    // useEffect(() => {
+    //     {
+    //         (async () => {
+    //             const res = await fetch(
+    //                 'https://frhnh.free.beeceptor.com/projects',
+    //             );
+    //             const data = await res.json();
 
-                setProjects(data);
-            })();
+    //             setProjects(data);
+    //         })();
+    //     }
+    // }, []);
+
+    const handleInputChange = (e) => {
+        setDataMessage({ ...dataMessage, [e.target.name]: e.target.value });
+    };
+
+    const handleFileChange = (e) => {
+        const files = e.target.files;
+        setSelectedFiles(files);
+        setDataMessage({ ...dataMessage, attachments: e.target.files });
+    };
+
+    const sendMailHandler = async (e) => {
+        e.preventDefault();
+        try {
+            const requiredFields = ['fullname', 'email', 'message'];
+            const missingFields = checkInputFields(requiredFields, dataMessage);
+            if (missingFields.length > 0) {
+                alert(`Please fill the ${missingFields.join(', ')} field(s)`);
+                return;
+            }
+
+            const formDataWithFiles = new FormData();
+
+            formDataWithFiles.append('fullname', dataMessage.fullname);
+            formDataWithFiles.append('message', dataMessage.message);
+            formDataWithFiles.append('email', dataMessage.email);
+            const baseURL = process.env.NEXT_PUBLIC_PERSONAL_API;
+
+            await toast.promise(
+                fetch(`${baseURL}/contact-me`, {
+                    method: 'POST',
+                    body: formDataWithFiles,
+                    headers: {
+                        Authorization: `Basic ${process.env.NEXT_PUBLIC_PERSONAL_API_CREDENTIALS}`,
+                    },
+                }),
+                {
+                    pending: 'Currently sending your message...',
+                    success: 'Your message has been sent!',
+                    error: 'An error occured. Please try again later.',
+                },
+                {
+                    autoClose: 1500,
+                    position: 'bottom-right',
+                    // autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'dark',
+                },
+            );
+            setDataMessage({
+                fullname: '',
+                email: '',
+                message: '',
+                attachments: null,
+            });
+        } catch (error) {
+            console.log('error', error);
         }
-    }, []);
-    console.log('projects', projects);
-
-    const router = useRouter();
+    };
 
     const handleSection = (section) => {
         setSectionContent(section);
@@ -67,15 +135,16 @@ export default function About() {
                                 <div className="mb-20">
                                     <div className="mb-4 text-lobster">
                                         <h2 className="font-bold text-3xl md:text-5xl mb-2">
-                                            Karim Benzema
+                                            Farhan Hilmi
                                         </h2>
                                         <span className="font-semibold text-base md:text-xl text-teal-500">
                                             Software Engineer
                                         </span>
                                     </div>
                                     <p className="text-sm text-dark-grey md:text-base w-full md:w-8/12">
-                                        I build accessible, inclusive products
-                                        and digital experiences for the web.
+                                        a tech enthusiast 🚀 crafting sleek and
+                                        powerful solutions. Let's build
+                                        something extraordinary together!
                                     </p>
                                 </div>
                                 <div className="invisible lg:visible xl:visible">
@@ -181,11 +250,7 @@ export default function About() {
                                         LinkedIn
                                     </a>
                                 </span>
-                                {/* <span className="hover:text-gray-400">
-                                    <a href="http://" target="_blank">
-                                        Medium
-                                    </a>
-                                </span> */}
+
                                 <span className="hover:text-gray-400">
                                     <a
                                         href="https://drive.google.com/file/d/1YOM9W0bkVPVEeaz2EvzwI5_kn4xPpB6p/view?usp=drive_link"
@@ -467,29 +532,47 @@ export default function About() {
                                     Your thoughts matter!
                                 </p>
 
-                                <InputGroup
-                                    label="Full name"
-                                    placeholder="type your full name here..."
-                                    isRequired={true}
-                                />
-                                <InputGroup
-                                    label="E-mail address"
-                                    placeholder="type your email address here..."
-                                    isRequired={true}
-                                />
-                                <InputGroup
-                                    label="Message"
-                                    placeholder="type your message here..."
-                                    isRequired={true}
-                                    isTextArea={true}
-                                />
-                                <InputGroup label="Attachments" isFile={true} />
-                                <Button
-                                    text={'Send message'}
-                                    onHover={true}
-                                    fontSize="text-lg"
-                                    margin="mt-6"
-                                />
+                                <form onSubmit={sendMailHandler}>
+                                    <InputGroup
+                                        label="Full name"
+                                        placeholder="type your full name here..."
+                                        isRequired={true}
+                                        name="fullname"
+                                        value={dataMessage.fullname}
+                                        onChange={handleInputChange}
+                                    />
+                                    <InputGroup
+                                        label="E-mail address"
+                                        placeholder="type your email address here..."
+                                        isRequired={true}
+                                        name="email"
+                                        value={dataMessage.email}
+                                        onChange={handleInputChange}
+                                    />
+                                    <InputGroup
+                                        label="Message"
+                                        placeholder="type your message here..."
+                                        isRequired={true}
+                                        isTextArea={true}
+                                        name="message"
+                                        value={dataMessage.message}
+                                        onChange={handleInputChange}
+                                    />
+                                    {/* <InputGroup
+                                        label="Attachments"
+                                        isFile={true}
+                                        name="attachments"
+                                        onChange={handleFileChange}
+                                        selectedFiles={selectedFiles}
+                                    /> */}
+                                    <Button
+                                        text={'Send message'}
+                                        onHover={true}
+                                        fontSize="text-lg"
+                                        margin="mt-6"
+                                        isOnsubmit={true}
+                                    />
+                                </form>
                             </div>
                         </div>
                     </div>
