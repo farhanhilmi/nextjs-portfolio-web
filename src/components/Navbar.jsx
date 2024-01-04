@@ -1,5 +1,4 @@
 import { Link } from 'react-scroll';
-import Logo from '../../public/assets/web/logo.png';
 
 export default function Navbar({ sectionContent }) {
     return (
