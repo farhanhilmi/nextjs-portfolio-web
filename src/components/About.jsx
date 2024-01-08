@@ -13,32 +13,21 @@ import { InputGroup } from './InputGroup';
 import Button from './Button';
 import { toast } from 'react-toastify';
 import { checkInputFields } from '@/utils/validation';
+import experienceData from '@/data/experience.js';
+import projectData from '@/data/projects.js';
 
 export default function About() {
     const [selectedFiles, setSelectedFiles] = useState(null);
+    const [selectedProject, setSelectedProject] = useState({});
 
     const [isDetail, setIsDetail] = useState(false);
     const [sectionContent, setSectionContent] = useState(false);
-    const [projects, setProjects] = useState([]);
     const [dataMessage, setDataMessage] = useState({
         fullname: '',
         email: '',
         message: '',
         attachments: null,
     });
-
-    // useEffect(() => {
-    //     {
-    //         (async () => {
-    //             const res = await fetch(
-    //                 'https://frhnh.free.beeceptor.com/projects',
-    //             );
-    //             const data = await res.json();
-
-    //             setProjects(data);
-    //         })();
-    //     }
-    // }, []);
 
     const handleInputChange = (e) => {
         setDataMessage({ ...dataMessage, [e.target.name]: e.target.value });
@@ -107,8 +96,9 @@ export default function About() {
         setSectionContent(section);
     };
 
-    const handleDetail = () => {
+    const handleDetail = (project) => {
         setIsDetail(true);
+        setSelectedProject(project);
     };
 
     const handleCloseDetail = () => {
@@ -118,7 +108,11 @@ export default function About() {
     return (
         <div className="text-white-gray">
             {isDetail ? (
-                <DetailProject isOpen={isDetail} onClose={handleCloseDetail} />
+                <DetailProject
+                    project={selectedProject}
+                    isOpen={isDetail}
+                    onClose={handleCloseDetail}
+                />
             ) : null}
             {/* NAVBAR SMALL SCREEN */}
             {sectionContent != 'home' || !sectionContent ? (
@@ -348,78 +342,17 @@ export default function About() {
                         </div>
 
                         <div className="mt-10" id="experience">
-                            <Experience
-                                position={'Backend Engineer Trainee'}
-                                company={
-                                    'PT Shopee International Indonesia - Sea Labs'
-                                }
-                                description={
-                                    "<ul className='list-disc pl-4 mb-4'> <li> Participated in Shopee's digital development program, completing a comprehensive labs boot camp in batch 1. Engaged in a rigorous 4-month full-time training with a focus on back-end development. </li> <li> Acquired foundational knowledge in programming and adopted industry best practices in software development. Explored concepts such as object-oriented programming, design patterns, clean architecture, transactional databases, and REST API implementation during the program. </li> <li> Contributed to a final group project assigned by Shopee, addressing specific study cases and applying the skills acquired throughout the training. </li> <li> Utilized a diverse Tech Stack that includes Ubuntu Linux, Golang, Git, PostgreSQL, GORM, Gin Framework, Docker, and gRPC, showcasing proficiency in a range of tools and technologies essential for real-world industry applications. </li> </ul>"
-                                }
-                                duration={'August 2023 -- December 2023'}
-                                jobType={'Trainee'}
-                                Stack={[
-                                    'Go',
-                                    'Gin',
-                                    'PostgreSQL',
-                                    'gRPC',
-                                    'Clean Architectur',
-                                    'Docker',
-                                    'REST API',
-                                ]}
-                            />
-                            <Experience
-                                position={'Backend Engineer Intern'}
-                                company={'PT Telekomunikasi Indonesia Tbk '}
-                                description={
-                                    "<ul className='list-disc pl-4 mb-4'> <li> Optimised unit testing procedures by introducing a mock database, leading to enhanced testing efficiency and a substantial reduction in test execution time. </li><li> Developed backend services using Django Python and PostgreSQL, delivering multiple services that contributed significantly to enhancing the overall functionality and performance of the system. </li> </ul>"
-                                }
-                                duration={'August 2022 -- December 2022'}
-                                jobType={'Internship'}
-                                Stack={[
-                                    'Python',
-                                    'Django',
-                                    'PostgreSQL',
-                                    'REST API',
-                                    'Unit Testing',
-                                ]}
-                            />
-                            <Experience
-                                position={'Backend Engineer Intern'}
-                                company={
-                                    'PT Bank Tabungan Pensiunan Nasional Tbk (BTPN JENIUS)'
-                                }
-                                description={
-                                    "<ul className='list-disc pl-4 mb-4'> <li> Produced clean and efficient code based on project requirements, ensuring high-quality software deliverables. </li><li> Developed backend microservices using Node.js, MongoDB, and gRPC as a part of the learning process, resulting in a solid understanding of these technologies. </li><li> Generated comprehensive API documentation using Swagger for a given microservices project, facilitating ease of understanding and usage for developers and stakeholders </li> </ul>"
-                                }
-                                duration={'February 2022 -- August 2022'}
-                                jobType={'Internship'}
-                                Stack={[
-                                    'JavaScript',
-                                    'NodeJs',
-                                    'ExpressJs',
-                                    'MongoDB',
-                                    'KafkaJs',
-                                    'Swagger',
-                                ]}
-                            />
-                            <Experience
-                                position={'Backend Engineer Intern'}
-                                company={
-                                    'PT. Intermedia Multibahasa Indonesia (LingoTalk)'
-                                }
-                                description={
-                                    "<ul className='list-disc pl-4 mb-4'> <li> Resolved bugs and optimised backend performance for seamless system operation and implemented new features within given timelines for application enhancement. Collaborated with Front-End, Mobile, and Project Manager to achieve project goals. </li><li> Automated data population in the database, improving data management efficiency. </li><li> Proactively addressed QA-reported bugs, ensuring a high-quality, error-free application </li> </ul>"
-                                }
-                                duration={'February 2022 -- August 2022'}
-                                jobType={'Internship'}
-                                Stack={[
-                                    'TypeScript',
-                                    'NodeJs',
-                                    'ExpressJs',
-                                    'NoSQL',
-                                ]}
-                            />
+                            {experienceData.map((experience, index) => (
+                                <Experience
+                                    key={index}
+                                    position={experience.position}
+                                    company={experience.company}
+                                    description={experience.description}
+                                    duration={experience.date}
+                                    jobType={experience.type}
+                                    Stack={experience.tags}
+                                />
+                            ))}
 
                             <a
                                 href={
@@ -452,39 +385,18 @@ export default function About() {
                             <div className="text-center w-full mb-8 text-3xl font-bold">
                                 -------- [Projects] --------
                             </div>
-                            <Projects
-                                onClick={handleDetail}
-                                position={'Backend Developer'}
-                                company={'Telkom Indonesia'}
-                                description={
-                                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ex dolores laborum impedit, illo a eligendi deleniti praesentium sequi corporis provident neque officia sapiente! Obcaecati perspiciatis saepe fuga eum sit. Perferendis ad nostrum earum doloribus sunt iure, quod corporis, tempore alias quas sed vel nulla! Consectetur eligendi reiciendis rem tempora.'
-                                }
-                                duration={'August 2022 -- December 2022'}
-                                jobType={'Internship'}
-                                Stack={['Django', 'PostgresQL', 'Python']}
-                            />
-                            <Projects
-                                onClick={handleDetail}
-                                position={'Backend Developer'}
-                                company={'Telkom Indonesia'}
-                                description={
-                                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ex dolores laborum impedit, illo a eligendi deleniti praesentium sequi corporis provident neque officia sapiente! Obcaecati perspiciatis saepe fuga eum sit. Perferendis ad nostrum earum doloribus sunt iure, quod corporis, tempore alias quas sed vel nulla! Consectetur eligendi reiciendis rem tempora.'
-                                }
-                                duration={'August 2022 -- December 2022'}
-                                jobType={'Internship'}
-                                Stack={['Django', 'PostgresQL', 'Python']}
-                            />
-                            <Projects
-                                onClick={handleDetail}
-                                position={'Backend Developer'}
-                                company={'Telkom Indonesia'}
-                                description={
-                                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis ex dolores laborum impedit, illo a eligendi deleniti praesentium sequi corporis provident neque officia sapiente! Obcaecati perspiciatis saepe fuga eum sit. Perferendis ad nostrum earum doloribus sunt iure, quod corporis, tempore alias quas sed vel nulla! Consectetur eligendi reiciendis rem tempora.'
-                                }
-                                duration={'August 2022 -- December 2022'}
-                                jobType={'Internship'}
-                                Stack={['Django', 'PostgresQL', 'Python']}
-                            />
+                            {projectData.map((project, index) => (
+                                <Projects
+                                    key={index}
+                                    onClick={() => handleDetail(project)}
+                                    title={project.title}
+                                    type={project.type}
+                                    description={project.description}
+                                    Stack={project.tags}
+                                    images={project.images}
+                                />
+                            ))}
+
                             <LinkPage href={''} className="font-semibold px-6">
                                 <span className="hover:text-teal-300 hover:bg-teal-400/20 hover:rounded-full hover:px-3 hover:py-2 hover:pe-0">
                                     <span className="mr-2 text-teal-300">

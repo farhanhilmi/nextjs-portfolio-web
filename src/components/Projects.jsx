@@ -3,15 +3,7 @@
 import { useState } from 'react';
 import Chips from './Chips';
 
-function Projects({
-    position,
-    company,
-    description,
-    duration,
-    jobType,
-    Stack,
-    onClick,
-}) {
+function Projects({ title, type, description, Stack, onClick, images }) {
     const [isHovered, setIsHovered] = useState(false);
 
     const handleMouseEnter = () => {
@@ -21,6 +13,9 @@ function Projects({
     const handleMouseLeave = () => {
         setIsHovered(false);
     };
+
+    const createMarkup = (htmlString) => ({ __html: htmlString });
+    const descriptionToShow = description.slice(0, 200);
 
     return (
         <div
@@ -34,9 +29,9 @@ function Projects({
             onClick={onClick}
         >
             <div className="mb-4">
-                <div className="bg-red-500 p-[3px] rounded-lg md:w-[7.5rem] md:h-20 w-full h-full">
+                <div className="bg-teal-400/10 p-[3px] rounded-lg md:w-[7.5rem] md:h-20 w-full h-full">
                     <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_6R2sHMN23PGg1pyIrPPSAku1fP0A8Kd32w&usqp=CAU"
+                        src={images[0]}
                         alt=""
                         srcSet=""
                         className="w-full h-full rounded-lg"
@@ -44,24 +39,22 @@ function Projects({
                 </div>
             </div>
             <div className="md:ps-3 col-span-3">
-                <h3 className="text-xl font-semibold mb-2">{position}</h3>
-                <p className="text-gray-500 mb-2">
-                    {company} ~ <span className="mr-2">{jobType}</span>
-                </p>
-                <p className="text-sm text-gray-400 mb-4">{description}</p>
-                {/* <div className="flex items-center text-xs text-gray-500">
-                    <span className="mr-2">{duration}</span>
-                    
-                </div> */}
+                <h3 className="text-xl font-semibold mb-2">{title}</h3>
+                <p className="text-gray-500 mb-2">{type}</p>
+                <div
+                    className="text-sm font-medium text-gray-400 mb-4"
+                    dangerouslySetInnerHTML={createMarkup(descriptionToShow)}
+                ></div>
+                {description.length > 200 && (
+                    <span className="text-teal-400/50 hover:underline cursor-pointer">
+                        ...See More
+                        {/* {showFullDescription ? 'See Less' : 'See More'} */}
+                    </span>
+                )}
+
                 <ul className="mt-4 flex flex-wrap gap-2">
                     {Stack.map((item, index) => (
                         <Chips text={item} key={index} />
-                        // <li
-                        //     key={index}
-                        //     className="text-xs bg-gray-100 text-gray-500 py-1 px-2 rounded"
-                        // >
-                        //     {item}
-                        // </li>
                     ))}
                 </ul>
             </div>

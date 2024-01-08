@@ -44,9 +44,7 @@ function Experience({
                 <div
                     className="text-sm font-medium text-gray-400 mb-4"
                     dangerouslySetInnerHTML={createMarkup(description)}
-                >
-                    {/* {description} */}
-                </div>
+                ></div>
                 {/* <div className="flex items-center text-xs text-gray-500">
                     <span className="mr-2">{duration}</span>
                     
