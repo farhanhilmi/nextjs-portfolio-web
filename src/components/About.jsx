@@ -4,7 +4,7 @@ import { Link } from 'react-scroll/modules';
 import LinkPage from 'next/link';
 import Experience from './Experience';
 import Projects from './Projects';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DetailProject from './DetailProject';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Chips from './Chips';
@@ -15,6 +15,9 @@ import { toast } from 'react-toastify';
 import { checkInputFields } from '@/utils/validation';
 import experienceData from '@/data/experience.js';
 import projectData from '@/data/projects.js';
+import Blog from './LinkItem';
+import LinkItem from './LinkItem';
+import articles from '@/data/articles';
 
 export default function About() {
     const [selectedFiles, setSelectedFiles] = useState(null);
@@ -210,6 +213,23 @@ export default function About() {
                                         <div className="relative">
                                             <Link
                                                 onSetActive={() =>
+                                                    handleSection('blog')
+                                                }
+                                                to="blog"
+                                                spy={true}
+                                                smooth={true}
+                                                offset={-50}
+                                                duration={500}
+                                                // href="#about"
+                                                activeClass="activeNav"
+                                                className={` cursor-pointer NavBar`}
+                                            >
+                                                BLOG / ARTICLE
+                                            </Link>
+                                        </div>
+                                        <div className="relative">
+                                            <Link
+                                                onSetActive={() =>
                                                     handleSection('contacts')
                                                 }
                                                 to="contacts"
@@ -258,7 +278,7 @@ export default function About() {
                     </div>
                     <div className="md:py-20 z-20">
                         <div className="px-6" id="about">
-                            <p className="text-dark-grey font-medium text-lg">
+                            <p className="text-dark-grey font-medium text-sm md:text-lg lg:text-lg xl:text-lg">
                                 Hello there! 👋 I'm{' '}
                                 <span className="text-teal-500">
                                     Farhan Hilmi
@@ -417,6 +437,51 @@ export default function About() {
                                     />
                                 </span>
                             </LinkPage>
+                        </div>
+                        <div className="mt-28" id="blog">
+                            <div className="text-center w-full mb-8 text-3xl font-bold">
+                                -------- [Blog / Article] --------
+                            </div>
+                            {articles.length > 0 ? (
+                                <>
+                                    <ul className="list-disc ml-5 space-y-2 mb-12">
+                                        {articles.map((article, index) => (
+                                            <li key={index}>
+                                                <LinkItem
+                                                    index={index}
+                                                    title={article.title}
+                                                    link={article.link}
+                                                />
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <LinkPage
+                                        href={''}
+                                        className="font-semibold px-6"
+                                    >
+                                        <span className="hover:text-teal-300 hover:bg-teal-400/20 hover:rounded-full hover:px-3 hover:py-2 hover:pe-0">
+                                            <span className="mr-2 text-teal-300">
+                                                <ArrowForwardIosIcon
+                                                    sx={{
+                                                        color: 'rgb(94, 234, 212)',
+                                                    }}
+                                                />
+                                                _
+                                            </span>{' '}
+                                            <Chips
+                                                fontSize="font-medium"
+                                                text={'See all articles'}
+                                                // onHover={true}
+                                            />
+                                        </span>
+                                    </LinkPage>
+                                </>
+                            ) : (
+                                <p className="text-dark-grey text-center">
+                                    😔 There are no posts available right now.
+                                    Please check back later.
+                                </p>
+                            )}
                         </div>
                         <div className="px-6 pt-56" id="contacts">
                             <div className="text-center w-full mb-12 text-3xl font-bold">

@@ -3,6 +3,7 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Kalam:wght@300;400;700&display=swap');
 
 :root {
     --foreground-rgb: 0, 0, 0;
@@ -36,8 +37,12 @@ body {
 }
 
 .text-lobster {
-    font-family: 'Lobster', cursive;
+    font-family: 'Lobster', 'Comic Sans MS', sans-serif;
 }
+
+/* .text-kalam {
+    font-family: 'Kalam', 'Lobster';
+} */
 
 .NavBar {
     font-size: 12px;
@@ -120,4 +125,28 @@ body {
 .overflow-auto::-webkit-scrollbar-track {
     background-color: #cbd5e0; /* Set the color to match your modal background color */
     border-radius: 0 1rem 1rem 0;
+}
+
+.mobile-order-1 {
+    order: 1;
+    margin-top: 0px;
+    margin-bottom: 12px;
+}
+.mobile-order-2 {
+    order: 2;
+}
+.mobile-order-3 {
+    order: 3;
+}
+
+@media (min-width: 500px) {
+    .mobile-order-1 {
+        order: 2;
+    }
+    .mobile-order-2 {
+        order: 1;
+    }
+    .mobile-order-3 {
+        order: 3;
+    }
 }

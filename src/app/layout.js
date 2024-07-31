@@ -22,6 +22,7 @@ export default function RootLayout({ children }) {
 
                 {children}
             </body>
+            <script src="https://www.twilik.com/assets/retainable/rss-embed/retainable-rss-embed.js"></script>
         </html>
     );
 }
