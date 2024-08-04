@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import Chips from './Chips';
 
-const DetailProject = ({ isOpen, onClose, project }) => {
+const DetailProject = ({
+    isOpen,
+    onClose,
+    project,
+    bgColor = 'bg-blue-ocean',
+    isEditable = false,
+}) => {
     const [previewImage, setPreviewImage] = useState(project.images[0]);
 
     useEffect(() => {
@@ -25,13 +31,13 @@ const DetailProject = ({ isOpen, onClose, project }) => {
 
     return (
         <div
-            className={`fixed inset-0 h-full w-full bg-gray-400  bg-clip-padding backdrop-filter backdrop-blur-sm  bg-opacity-10 flex items-center justify-center ${
+            className={`fixed inset-0 h-full w-full bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-sm  bg-opacity-10 flex items-center justify-center ${
                 isOpen ? 'visible z-[99999999999999]' : 'invisible'
             }`}
             onClick={onClose}
         >
             <div
-                className="max-w-5xl w-[90%] h-[70%] p-4 rounded-2xl bg-blue-ocean overflow-auto relative"
+                className={`max-w-5xl w-[90%] h-[70%] p-4 rounded-2xl ${bgColor} overflow-auto relative`}
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Add your detail content here */}
@@ -61,6 +67,11 @@ const DetailProject = ({ isOpen, onClose, project }) => {
                                 </div>
                             ))}
                         </div>
+                        {isEditable && (
+                            <span className="border border-gray-100/70 rounded-full px-2 mx-auto cursor-pointer hover:bg-teal-400/10 hover:text-teal-300 hover:border-teal-300">
+                                Update
+                            </span>
+                        )}
                         <h4 className="mobile-order-2 sm:text-3xl text-lg font-bold mt-4">
                             #{project.title}
                         </h4>

@@ -36,6 +36,10 @@ body {
     }
 }
 
+.truncate-cell {
+    @apply truncate max-w-xs;
+}
+
 .text-lobster {
     font-family: 'Lobster', 'Comic Sans MS', sans-serif;
 }
