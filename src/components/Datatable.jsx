@@ -20,14 +20,15 @@ const DataTable = ({ columns, data, isDetailed = true }) => {
                 className="table-auto w-full min-w-max bg-white"
             >
                 <thead>
-                    {headerGroups.map((headerGroup) => (
+                    {headerGroups.map((headerGroup, i) => (
                         <tr
                             {...headerGroup.getHeaderGroupProps()}
                             className="border-b"
+                            key={i}
                         >
-                            {headerGroup.headers.map((column) => (
+                            {headerGroup.headers.map((column, index) => (
                                 <th
-                                    key={column.id}
+                                    key={index}
                                     {...column.getHeaderProps()}
                                     className="px-6 py-3 text-left text-sm text-gray-900 font-semibold uppercase tracking-wider"
                                 >
@@ -69,7 +70,6 @@ const DataTable = ({ columns, data, isDetailed = true }) => {
                                         );
                                     })}
                                 </tr>
-                                {console.log('dataObject', dataObject)}
                             </>
                         );
                     })}

@@ -1,6 +1,4 @@
-// src/components/DashboardLayout.js
-
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 // import feather from 'feather-icons';
 import '../app/globals.css';
 import Head from 'next/head';
@@ -16,8 +14,75 @@ export const metadata = {
 };
 
 const DashboardLayout = ({ children, pageTitle }) => {
+    const btnOpenMenuRef = useRef(null);
+    const btnCloseMenuRef = useRef(null);
+    const asideRef = useRef(null);
+
     useEffect(() => {
         feather.replace();
+    }, []);
+
+    useEffect(() => {
+        // Ensure this runs only on the client side
+        if (typeof window !== 'undefined') {
+            const bodyRef = document.body;
+
+            const handleOpenMenu = (event) => {
+                event.stopPropagation();
+                if (asideRef.current && bodyRef) {
+                    asideRef.current.classList.remove('closed');
+                    bodyRef.classList.add(
+                        'pointer-events-none',
+                        'overflow-hidden',
+                    );
+                    asideRef.current.classList.add('pointer-events-auto');
+                }
+            };
+
+            const handleCloseMenu = (event) => {
+                if (asideRef.current && bodyRef) {
+                    asideRef.current.classList.add('closed');
+                    bodyRef.classList.remove(
+                        'pointer-events-none',
+                        'overflow-hidden',
+                    );
+                }
+            };
+
+            const handleAsideClick = (event) => {
+                event.stopPropagation();
+            };
+
+            const handleDocumentClick = () => {
+                if (asideRef.current && bodyRef) {
+                    asideRef.current.classList.add('closed');
+                    bodyRef.classList.remove(
+                        'pointer-events-none',
+                        'overflow-hidden',
+                    );
+                }
+            };
+
+            const btnOpenMenu = btnOpenMenuRef.current;
+            const btnCloseMenu = btnCloseMenuRef.current;
+            const aside = asideRef.current;
+
+            if (btnOpenMenu)
+                btnOpenMenu.addEventListener('click', handleOpenMenu);
+            if (btnCloseMenu)
+                btnCloseMenu.addEventListener('click', handleCloseMenu);
+            if (aside) aside.addEventListener('click', handleAsideClick);
+            document.addEventListener('click', handleDocumentClick);
+
+            return () => {
+                if (btnOpenMenu)
+                    btnOpenMenu.removeEventListener('click', handleOpenMenu);
+                if (btnCloseMenu)
+                    btnCloseMenu.removeEventListener('click', handleCloseMenu);
+                if (aside) aside.removeEventListener('click', handleAsideClick);
+                document.removeEventListener('click', handleDocumentClick);
+            };
+        }
     }, []);
 
     return (
@@ -35,12 +100,18 @@ const DashboardLayout = ({ children, pageTitle }) => {
                 <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>
             </Script>
             <div className="flex bg-gray-100">
-                <aside className="h-screen bg-white fixed lg:sticky top-0 border-r-2 p-6 pt-10 whitespace-nowrap z-10 closed shadow-xl">
+                <aside
+                    ref={asideRef}
+                    className="h-screen bg-white fixed lg:sticky top-0 border-r-2 p-6 pt-10 whitespace-nowrap z-10 closed shadow-xl"
+                >
                     <div className="mb-10 flex items-center justify-between">
                         <div className="p-2 bg-purple-600 text-white rounded">
                             <i data-feather="box"></i>
                         </div>
-                        <button className="lg:hidden bg-gray-200 text-gray-500 rounded leading-none p-1 btn-close-menu">
+                        <button
+                            ref={btnCloseMenuRef}
+                            className="lg:hidden bg-gray-200 text-gray-500 rounded leading-none p-1 btn-close-menu"
+                        >
                             <i data-feather="chevron-left"></i>
                         </button>
                     </div>
@@ -208,7 +279,10 @@ const DashboardLayout = ({ children, pageTitle }) => {
                 <div className="w-full">
                     <header className="px-6 lg:px-8 pb-2 lg:pb-4 pt-4 lg:pt-8 shadow bg-white mb-1 sticky text-gray-800 top-0">
                         <h1 className="text-xl font-semibold mb-6 flex items-center">
-                            <button className="btn-open-menu inline-block lg:hidden mr-6">
+                            <button
+                                ref={btnOpenMenuRef}
+                                className="btn-open-menu inline-block lg:hidden mr-6"
+                            >
                                 <i data-feather="menu"></i>
                             </button>
                             <span>{pageTitle}</span>
