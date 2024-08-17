@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
+import ImageUploader from './ImageUploader';
 
-// Helper function to render form fields based on type
 const renderField = (field, handleChange) => {
-    const { type, name, label, value, options } = field;
+    const { type, name, label, handleUploadComplete, isMultiple } = field;
 
     const commonProps = {
         id: name,
         name,
-        value,
         onChange: handleChange,
         className:
             'mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-gray-700',
@@ -68,7 +67,12 @@ const renderField = (field, handleChange) => {
                     >
                         {label}
                     </label>
-                    <input type="file" {...commonProps} multiple />
+                    <ImageUploader
+                        path="public/image/projects"
+                        onUploadComplete={handleUploadComplete}
+                        isMultiple={isMultiple}
+                        {...commonProps}
+                    />
                 </div>
             );
         case 'array':
@@ -92,19 +96,19 @@ const renderField = (field, handleChange) => {
     }
 };
 
-const DynamicForm = ({ fields, onSubmit }) => {
-    const [formData, setFormData] = useState(
-        fields.reduce(
-            (acc, field) => ({
-                ...acc,
-                [field.name]:
-                    field.type === 'array'
-                        ? field.items?.join(',') || ''
-                        : field.value || '',
-            }),
-            {},
-        ),
-    );
+const DynamicForm = ({ fields, onSubmit, formData, setFormData }) => {
+    // const [formData, setFormData] = useState(
+    //     fields.reduce(
+    //         (acc, field) => ({
+    //             ...acc,
+    //             [field.name]:
+    //                 field.type === 'array'
+    //                     ? field.items?.join(',') || ''
+    //                     : field.value || '',
+    //         }),
+    //         {},
+    //     ),
+    // );
 
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
@@ -117,27 +121,23 @@ const DynamicForm = ({ fields, onSubmit }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const formDataToSubmit = new FormData();
+
+        const jsonObject = {};
 
         Object.entries(formData).forEach(([key, value]) => {
             const field = fields.find((field) => field.name === key);
             if (field.type === 'array') {
-                value
-                    .split(',')
-                    .map((item) => item.trim())
-                    .forEach((item, i) => {
-                        formDataToSubmit.append(`${key}[${i}]`, item);
-                    });
+                jsonObject[key] = value.split(',').map((item) => item.trim());
             } else if (Array.isArray(value)) {
-                value.forEach((file, i) => {
-                    formDataToSubmit.append(`${key}[${i}]`, file);
-                });
+                jsonObject[key] = value.map((file) => file); // Customize as needed
+            } else if (field.type === 'number') {
+                jsonObject[key] = parseInt(value);
             } else {
-                formDataToSubmit.append(key, value);
+                jsonObject[key] = value;
             }
         });
 
-        onSubmit(formDataToSubmit);
+        onSubmit(jsonObject);
     };
 
     return (

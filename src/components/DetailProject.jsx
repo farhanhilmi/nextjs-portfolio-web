@@ -54,7 +54,7 @@ const DetailProject = ({
                             {project.images.map((image, index) => (
                                 <div
                                     key={index}
-                                    className="bg-slate-500 w-26 h-18 rounded-lg overflow-hidden hover:shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
+                                    className="bg-slate-500 w-40 h-28 rounded-lg overflow-hidden hover:shadow-lg transition-transform transform hover:scale-105 cursor-pointer"
                                     onClick={() =>
                                         setPreviewImageHandler(image)
                                     }

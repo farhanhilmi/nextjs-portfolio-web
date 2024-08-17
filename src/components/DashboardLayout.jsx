@@ -99,6 +99,7 @@ const DashboardLayout = ({ children, pageTitle }) => {
             <Script>
                 <script src="https://cdn.datatables.net/2.1.3/js/dataTables.js"></script>
             </Script>
+            <ToastContainer />
             <div className="flex bg-gray-100">
                 <aside
                     ref={asideRef}
@@ -118,7 +119,7 @@ const DashboardLayout = ({ children, pageTitle }) => {
                     <ul className="text-gray-500 font-semibold flex flex-col gap-2">
                         <li>
                             <a
-                                href="#"
+                                href="/"
                                 className="flex items-center rounded px-3 py-2 hover:text-black hover:bg-gray-50 transition-all"
                             >
                                 <i
@@ -134,7 +135,7 @@ const DashboardLayout = ({ children, pageTitle }) => {
                         </li>
                         <li>
                             <a
-                                href="#"
+                                href="/dashboard"
                                 className="active text-black bg-gray-100 flex items-center rounded px-3 py-2 hover:text-black hover:bg-gray-50 transition-all"
                             >
                                 <i

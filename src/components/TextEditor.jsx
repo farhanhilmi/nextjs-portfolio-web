@@ -1,23 +1,31 @@
-// Import React dependencies.
-import React, { useState } from 'react';
-// Import the Slate editor factory.
-import { createEditor } from 'slate';
+import dynamic from 'next/dynamic';
+import { useMemo, useRef, useState } from 'react';
 
-// Import the Slate components and React plugin.
-import { Slate, Editable, withReact } from 'slate-react';
+const JoditEditor = dynamic(() => import('jodit-react'), { ssr: false });
 
-const initialValue = [
-    {
-        type: 'paragraph',
-        children: [{ text: 'A line of text in a paragraph.' }],
-    },
-];
+const MyPage = ({ placeholder, setContent, content }) => {
+    const editor = useRef(null);
 
-export default function TextEditor() {
-    const [editor] = useState(() => withReact(createEditor()));
-    return (
-        <Slate editor={editor} initialValue={initialValue}>
-            <Editable />
-        </Slate>
+    const config = useMemo(
+        () => ({
+            readonly: false, // all options from https://xdsoft.net/jodit/docs/,
+            placeholder: placeholder || 'Start typings...',
+        }),
+        [placeholder],
     );
-}
+
+    return (
+        <div className="!text-gray-800">
+            <JoditEditor
+                ref={editor}
+                value={content}
+                config={config}
+                tabIndex={1} // tabIndex of textarea
+                onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+                onChange={(newContent) => {}}
+            />
+        </div>
+    );
+};
+
+export default MyPage;
