@@ -4,7 +4,7 @@ import { Link } from 'react-scroll/modules';
 import LinkPage from 'next/link';
 import Experience from './Experience';
 import Projects from './Projects';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DetailProject from './DetailProject';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Chips from './Chips';
@@ -13,15 +13,18 @@ import { InputGroup } from './InputGroup';
 import Button from './Button';
 import { toast } from 'react-toastify';
 import { checkInputFields } from '@/utils/validation';
-import experienceData from '@/data/experience.js';
-import projectData from '@/data/projects.js';
+// import experienceData from '@/data/experience.js';
+// import projectData from '@/data/projects.js';
 import Blog from './LinkItem';
 import LinkItem from './LinkItem';
 import articles from '@/data/articles';
+import { readAllData } from '@/services/firebase';
 
 export default function About() {
     const [selectedFiles, setSelectedFiles] = useState(null);
     const [selectedProject, setSelectedProject] = useState({});
+    const [projectData, setProjectData] = useState([]);
+    const [experienceData, setExperienceData] = useState([]);
 
     const [isDetail, setIsDetail] = useState(false);
     const [sectionContent, setSectionContent] = useState(false);
@@ -107,6 +110,23 @@ export default function About() {
     const handleCloseDetail = () => {
         setIsDetail(false);
     };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [projects, experiences] = await Promise.all([
+                    await readAllData('projects'),
+                    await readAllData('experiences'),
+                ]);
+                setProjectData(projects);
+                setExperienceData(experiences);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <div className="text-white-gray">

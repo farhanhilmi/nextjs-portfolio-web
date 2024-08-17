@@ -36,6 +36,19 @@ body {
     }
 }
 
+@media (max-width: 1024px) {
+    aside {
+        transition: all 0.3s ease;
+    }
+    aside.closed {
+        transform: translatex(-100%);
+    }
+}
+
+.truncate-cell {
+    @apply truncate max-w-xs;
+}
+
 .text-lobster {
     font-family: 'Lobster', 'Comic Sans MS', sans-serif;
 }
