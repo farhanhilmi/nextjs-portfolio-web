@@ -13,8 +13,6 @@ import { InputGroup } from './InputGroup';
 import Button from './Button';
 import { toast } from 'react-toastify';
 import { checkInputFields } from '@/utils/validation';
-// import experienceData from '@/data/experience.js';
-// import projectData from '@/data/projects.js';
 import Blog from './LinkItem';
 import LinkItem from './LinkItem';
 import articles from '@/data/articles';

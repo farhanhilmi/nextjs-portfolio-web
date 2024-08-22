@@ -17,6 +17,7 @@ const renderField = (field, handleChange) => {
         case 'text':
         case 'number':
         case 'email':
+        case 'password':
             return (
                 <div key={name} className="mb-4">
                     <label
@@ -137,7 +138,7 @@ const DynamicForm = ({ fields, onSubmit, formData, setFormData }) => {
             }
         });
 
-        onSubmit(jsonObject);
+        onSubmit(jsonObject, e);
     };
 
     return (

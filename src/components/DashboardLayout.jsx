@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import feather from 'feather-icons';
 import Link from 'next/link';
 import Script from 'next/script';
+// import { useRouter } from 'next/router';
 
 export const metadata = {
     title: 'Dashboard | Farhan Hilmi',
@@ -17,8 +18,14 @@ const DashboardLayout = ({ children, pageTitle }) => {
     const btnOpenMenuRef = useRef(null);
     const btnCloseMenuRef = useRef(null);
     const asideRef = useRef(null);
+    // const router = useRouter();
+
+    // const isAuth = false;
 
     useEffect(() => {
+        // if (!isAuth) {
+        //     router.push('/');
+        // }
         feather.replace();
     }, []);
 
